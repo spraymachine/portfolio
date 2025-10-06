@@ -1,0 +1,41 @@
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
+
+:root {
+  --main-font: "M PLUS Rounded 1c", sans-serif;
+  --secondary-font: "Dancing Script", cursive;
+  
+  /* Color palette */
+  --bg-base: #F9F5F0;
+  --bg-secondary: #F2EAD3;
+  --accent: #F4991A;
+  --text-dark: #344F1F;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--main-font);
+  color: var(--text-dark);
+  background-color: var(--bg-base);
+  overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--main-font);
+  color: var(--text-dark);
+}
+
+button {
+  font-family: var(--main-font);
+}
+
