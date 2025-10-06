@@ -2,7 +2,7 @@
   "name": "portfolio",
   "version": "1.0.0",
   "description": "Minimalistic portfolio website",
-  "homepage": "https://spraymachine.github.io/portfolio",
+  "homepage": "https://manidodla.xyz",
   "private": true,
   "dependencies": {
     "react": "^18.2.0",
