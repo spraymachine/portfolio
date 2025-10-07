@@ -63,18 +63,6 @@ function Work() {
 
   const projects = [
     {
-      title: 'Scratch Wrath',
-      description: 'An engaging gaming platform built with modern web technologies, featuring interactive gameplay and smooth animations.',
-      link: 'https://manik5621.wixsite.com/scratch-wrath',
-      category: 'Gaming'
-    },
-    {
-      title: 'Krishi Engineers',
-      description: 'Professional business website showcasing engineering solutions with a clean, corporate design and comprehensive service information.',
-      link: 'https://www.krishiengineers.in',
-      category: 'Business'
-    },
-    {
       title: 'Safe Hands',
       description: 'A compassionate platform dedicated to safety and support services, with intuitive navigation and accessible design.',
       link: 'https://www.safehands.live',
@@ -85,6 +73,12 @@ function Work() {
       description: 'Elegant personal portfolio website with sophisticated design elements and smooth user experience.',
       link: 'https://akirisridhar.com',
       category: 'Portfolio'
+    },
+    {
+      title: 'Krishi Engineers',
+      description: 'Professional business website showcasing engineering solutions with a clean, corporate design and comprehensive service information.',
+      link: 'https://www.krishiengineers.in',
+      category: 'Business'
     },
     {
       title: 'Viren Jewellery',
@@ -103,6 +97,12 @@ function Work() {
       description: 'Dynamic web application with rich features and interactive elements, delivering exceptional user engagement.',
       link: 'https://mani-dodla.wixsite.com/bnbb',
       category: 'Web App'
+    }, 
+    {
+      title: 'Scratch Wrath',
+      description: 'An engaging gaming platform built with modern web technologies, featuring interactive gameplay and smooth animations.',
+      link: 'https://manik5621.wixsite.com/scratch-wrath',
+      category: 'Gaming'
     }
   ];
 

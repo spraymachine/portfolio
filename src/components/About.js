@@ -27,8 +27,10 @@ function About() {
   }, []);
 
   const skills = [
-    'React', 'JavaScript', 'HTML/CSS', 'Node.js',
-    'Web Design', 'UI/UX', 'Responsive Design', 'WordPress'
+    'React', 'JavaScript', 'HTML/CSS', 
+    'Java', 'Python', 'UI/UX', 'Responsive Design', 'Wix', 'Webflow',
+    'Documentation', 'Version Control', 'Git', 'GitHub', 'Terminal',
+    'AWS', 'Azure', 'Requirement Gathering'
   ];
 
   return (
