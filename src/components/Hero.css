@@ -30,12 +30,27 @@
 }
 
 .hero-subtitle {
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: 500;
   color: var(--text-dark);
   opacity: 0.8;
   margin-bottom: 1.5rem;
   line-height: 1.4;
+  min-height: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.typing-text {
+  font-family: 'Courier New', monospace;
+  color: var(--accent);
+}
+
+.typing-text .cursor {
+  display: inline-block;
+  margin-left: 2px;
+  font-weight: 400;
 }
 
 .hero-description {
@@ -78,15 +93,15 @@
 
 .circle-1 {
   position: absolute;
-  top: 15%;
-  right: 10%;
+  top: 5%;
+  right: 2%;
   animation: float 6s ease-in-out infinite;
 }
 
 .circle-2 {
   position: absolute;
-  bottom: 20%;
-  left: 15%;
+  bottom: 8%;
+  left: 2%;
   animation: float 8s ease-in-out infinite reverse;
 }
 
@@ -106,7 +121,8 @@
   }
   
   .hero-subtitle {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
+    min-height: 2.8rem;
   }
   
   .hero-description {
@@ -120,7 +136,8 @@
   }
   
   .hero-subtitle {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
+    min-height: 2.5rem;
   }
   
   .hero-description {
@@ -143,7 +160,8 @@
   }
   
   .hero-subtitle {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+    min-height: 2rem;
   }
 }
 

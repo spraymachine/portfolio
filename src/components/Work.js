@@ -29,10 +29,7 @@ function Work() {
   }, []);
 
   useEffect(() => {
-    const container = detailsRef.current;
-    if (!container) return;
-
-    const cards = container.querySelectorAll('.project-card');
+    const cards = document.querySelectorAll('.project-card');
 
     const thresholds = [0.6, 0.7, 0.8, 0.9, 1];
     const io = new IntersectionObserver(
@@ -53,7 +50,7 @@ function Work() {
           setActiveIndex(nextIndex);
         }
       },
-      { root: container, threshold: thresholds }
+      { threshold: thresholds }
     );
 
     cards.forEach((el) => io.observe(el));

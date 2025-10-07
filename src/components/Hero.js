@@ -1,5 +1,73 @@
 import React, { useEffect, useState } from 'react';
+import { motion, useAnimationControls } from 'framer-motion';
 import './Hero.css';
+
+function TypingText({
+  words = ["Web Designer", "Web Developer", "Cloud Engineer"],
+  typingSpeed = 150,
+  deleteSpeed = 100,
+  delayBetweenWords = 1000,
+}) {
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [currentText, setCurrentText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const controls = useAnimationControls();
+
+  useEffect(() => {
+    const word = words[currentWordIndex];
+
+    if (isDeleting) {
+      if (currentText === "") {
+        setIsDeleting(false);
+        setCurrentWordIndex((prev) => (prev + 1) % words.length);
+        return;
+      }
+
+      const timer = setTimeout(() => {
+        setCurrentText(word.substring(0, currentText.length - 1));
+      }, deleteSpeed);
+      return () => clearTimeout(timer);
+    }
+
+    if (currentText === word) {
+      const timer = setTimeout(() => {
+        setIsDeleting(true);
+      }, delayBetweenWords);
+      return () => clearTimeout(timer);
+    }
+
+    const timer = setTimeout(() => {
+      setCurrentText(word.substring(0, currentText.length + 1));
+    }, typingSpeed);
+    return () => clearTimeout(timer);
+  }, [
+    currentText,
+    currentWordIndex,
+    isDeleting,
+    words,
+    typingSpeed,
+    deleteSpeed,
+    delayBetweenWords,
+  ]);
+
+  useEffect(() => {
+    controls.start({
+      opacity: [0.2, 1],
+      transition: {
+        duration: 0.5,
+        repeat: Infinity,
+        repeatType: "reverse",
+      },
+    });
+  }, [controls]);
+
+  return (
+    <span className="typing-text">
+      {currentText}
+      <motion.span animate={controls} className="cursor">|</motion.span>
+    </span>
+  );
+}
 
 function Hero() {
   const [isVisible, setIsVisible] = useState(false);
@@ -15,14 +83,12 @@ function Hero() {
           Hi, I'm <span className="highlight">Mani</span>
         </h1>
         <h2 className="hero-subtitle">
-          Crafting Digital Experiences with Passion
+          <TypingText />
         </h2>
-        <p className="hero-description">
-          A web developer & designer creating beautiful, functional websites that bring ideas to life.
-        </p>
-        <a href="#contact" className="cta-button">
-          Let's Work Together
-        </a>
+       
+        {/* <a href="#contact" className="cta-button">
+          Let's Work
+        </a> */}
         
         {/* Decorative SVG elements */}
         <div className="hero-decoration">
