@@ -4,6 +4,8 @@ import './Work.css';
 function Work() {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const detailsRef = useRef(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -25,6 +27,42 @@ function Work() {
       }
     };
   }, []);
+
+  useEffect(() => {
+    const container = detailsRef.current;
+    if (!container) return;
+
+    const cards = container.querySelectorAll('.project-card');
+
+    const thresholds = [0.6, 0.7, 0.8, 0.9, 1];
+    const io = new IntersectionObserver(
+      (entries) => {
+        let nextIndex = activeIndex;
+        let bestRatio = 0;
+
+        entries.forEach((entry) => {
+          const idxAttr = entry.target.getAttribute('data-index');
+          const idx = idxAttr ? parseInt(idxAttr, 10) : 0;
+          if (entry.isIntersecting && entry.intersectionRatio > bestRatio) {
+            bestRatio = entry.intersectionRatio;
+            nextIndex = idx;
+          }
+        });
+
+        if (bestRatio >= 0.6 && nextIndex !== activeIndex) {
+          setActiveIndex(nextIndex);
+        }
+      },
+      { root: container, threshold: thresholds }
+    );
+
+    cards.forEach((el) => io.observe(el));
+
+    return () => {
+      cards.forEach((el) => io.unobserve(el));
+      io.disconnect();
+    };
+  }, [activeIndex]);
 
   const projects = [
     {
@@ -78,30 +116,50 @@ function Work() {
       className={`work ${isVisible ? 'fade-in' : ''}`}
     >
       <h2 className="section-title">My Work</h2>
-      <p className="section-subtitle">
-        A collection of projects I've worked on, each crafted with attention to detail and passion for excellence.
-      </p>
-      
-      <div className="projects-grid">
-        {projects.map((project, index) => (
-          <div 
-            key={index} 
-            className="project-card"
-            style={{ animationDelay: `${index * 0.1}s` }}
-          >
-            <div className="project-category">{project.category}</div>
-            <h3 className="project-title">{project.title}</h3>
-            <p className="project-description">{project.description}</p>
-            <a 
-              href={project.link} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="project-link"
-            >
-              View Project →
-            </a>
+      <div className="work-container">
+        <div className="project-list">
+          <div className="active-project-title">
+            {projects[activeIndex]?.title}
           </div>
-        ))}
+        </div>
+        <div className="project-details" ref={detailsRef}>
+          {projects.map((project, index) => (
+            <div 
+              key={index} 
+              className="project-card"
+              data-index={index}
+              style={{ animationDelay: `${index * 0.1}s` }}
+              role="button"
+              tabIndex={0}
+              onClick={() => window.open(project.link, '_blank', 'noopener,noreferrer')}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  window.open(project.link, '_blank', 'noopener,noreferrer');
+                }
+              }}
+            >
+              <div className="project-category">{project.category}</div>
+              <h3 className="project-title">{project.title}</h3>
+              <p className="project-description">{project.description}</p>
+              <a 
+                href={project.link} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="project-link"
+                onClick={(e) => e.stopPropagation()}
+              >
+                View Project →
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+      {/* Mobile overlay heading - rendered last to be on top */}
+      <div className="project-list-mobile-overlay">
+        <div className="active-project-title">
+          {projects[activeIndex]?.title}
+        </div>
       </div>
     </section>
   );
