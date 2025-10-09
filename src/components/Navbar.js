@@ -14,14 +14,14 @@ function Navbar() {
   }, []);
 
   return (
-    <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+    <nav className={`navbar ${scrolled ? 'scrolled' : ''}`} role="navigation" aria-label="Main navigation">
       <div className="nav-container">
-        <div className="nav-logo">Portfolio</div>
+        <div className="nav-logo">Mani Dodla</div>
         <ul className="nav-links">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About Me</a></li>
-          <li><a href="#work">My Work</a></li>
-          <li><a href="#contact">Contact Me</a></li>
+          <li><a href="#home" aria-label="Navigate to Home section">Home</a></li>
+          <li><a href="#about" aria-label="Navigate to About Me section">About Me</a></li>
+          <li><a href="#work" aria-label="Navigate to My Work section">My Work</a></li>
+          <li><a href="#contact" aria-label="Navigate to Contact Me section">Contact Me</a></li>
         </ul>
       </div>
     </nav>

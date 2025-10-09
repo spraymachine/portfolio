@@ -1,0 +1,21 @@
+{
+  "short_name": "Mani Dodla",
+  "name": "Mani Dodla - Web Developer in Vizag",
+  "description": "Professional Web Developer in Visakhapatnam (Vizag), India. Specializing in React, JavaScript, and modern web solutions.",
+  "icons": [
+    {
+      "src": "fav.png",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/png"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#F9F5F0",
+  "background_color": "#F9F5F0",
+  "orientation": "portrait-primary",
+  "categories": ["business", "portfolio", "web development"],
+  "lang": "en-US",
+  "dir": "ltr"
+}
+

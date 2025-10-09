@@ -91,14 +91,15 @@ function Hero() {
   };
 
   return (
-    <section id="home" className={`hero ${isVisible ? 'fade-in' : ''}`}>
+    <section id="home" className={`hero ${isVisible ? 'fade-in' : ''}`} aria-label="Hero section - Mani Dodla Web Developer">
       <div className="hero-content">
         <h1 className="hero-title">
-          Hi, I'm <span className="highlight">Mani</span>
+          Hi, I'm <span className="highlight">Mani Dodla</span>
         </h1>
         <h2 className="hero-subtitle">
           <TypingText />
         </h2>
+        <p className="hero-location">Web Developer in Visakhapatnam (Vizag), India</p>
        
         {/* <a href="#contact" className="cta-button">
           Let's Work

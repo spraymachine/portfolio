@@ -149,8 +149,9 @@ function Work() {
       id="work" 
       ref={sectionRef}
       className={`work ${isVisible ? 'fade-in' : ''}`}
+      aria-label="Portfolio and work showcase"
     >
-      <h2 className="section-title">My Work</h2>
+      <h2 className="section-title">My Work - Web Development Projects</h2>
       <div className="work-container">
         <div className="project-list">
           <div className="active-project-title">
