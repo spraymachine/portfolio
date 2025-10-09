@@ -161,10 +161,15 @@
 
 /* Mobile responsive - consolidated */
 @media (max-width: 768px) {
+  .work {
+    overflow: visible;
+  }
+  
   .work-container {
     flex-direction: column;
-    min-height: auto;
+    min-height: 100vh;
     position: relative;
+    overflow: visible;
   }
   
   /* Hide desktop sticky heading on mobile */
@@ -172,23 +177,27 @@
     display: none;
   }
   
-  /* Show mobile overlay heading - rendered last in DOM so naturally on top */
+  /* Show mobile overlay heading - sticky at top when scrolling */
   .project-list-mobile-overlay {
     display: flex;
-    position: fixed;
-    top: 20vh;
-    left: 24px;
-    right: 24px;
-    width: auto;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
     height: auto;
     background: var(--bg-base);
-    padding: 16px 24px;
-    border-radius: 12px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-    z-index: 10000;
+    padding: 20px 24px;
+    border-top: 2px solid var(--accent);
+    border-bottom: 2px solid var(--accent);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
     pointer-events: none;
     align-items: center;
     justify-content: center;
+    margin-bottom: 24px;
+    order: -1;
   }
   
   .project-list-mobile-overlay::after {
@@ -196,19 +205,16 @@
     position: absolute;
     left: 0;
     right: 0;
-    bottom: -48px;
-    height: 48px;
+    bottom: -24px;
+    height: 24px;
     background: linear-gradient(to bottom, var(--bg-base), transparent);
-    border-bottom-left-radius: 12px;
-    border-bottom-right-radius: 12px;
     pointer-events: none;
-    z-index: 10000;
   }
   
   .project-list-mobile-overlay .active-project-title {
     margin: 0;
     text-align: center;
-    font-size: 2.1rem;
+    font-size: 1.8rem;
     font-weight: 800;
     text-rendering: geometricPrecision;
     -webkit-font-smoothing: antialiased;
@@ -216,7 +222,6 @@
   
   .project-details {
     width: 100%;
-    padding-top: 20vh;
     padding-left: 24px;
     padding-right: 24px;
   }

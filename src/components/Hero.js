@@ -4,8 +4,8 @@ import './Hero.css';
 
 function TypingText({
   words = ["Web Designer", "Web Developer", "Cloud Engineer"],
-  typingSpeed = 150,
-  deleteSpeed = 100,
+  typingSpeed = 75,
+  deleteSpeed = 50,
   delayBetweenWords = 1000,
 }) {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
@@ -71,10 +71,24 @@ function TypingText({
 
 function Hero() {
   const [isVisible, setIsVisible] = useState(false);
+  const [circle1Position, setCircle1Position] = useState({ top: '5%', right: '2%' });
+  const [circle2Position, setCircle2Position] = useState({ bottom: '8%', left: '2%' });
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
+
+  const moveCircle1 = () => {
+    const newTop = Math.random() * 80 + 5; // 5% to 85%
+    const newRight = Math.random() * 80 + 5; // 5% to 85%
+    setCircle1Position({ top: `${newTop}%`, right: `${newRight}%` });
+  };
+
+  const moveCircle2 = () => {
+    const newBottom = Math.random() * 80 + 5; // 5% to 85%
+    const newLeft = Math.random() * 80 + 5; // 5% to 85%
+    setCircle2Position({ bottom: `${newBottom}%`, left: `${newLeft}%` });
+  };
 
   return (
     <section id="home" className={`hero ${isVisible ? 'fade-in' : ''}`}>
@@ -92,10 +106,24 @@ function Hero() {
         
         {/* Decorative SVG elements */}
         <div className="hero-decoration">
-          <svg className="circle-1" width="100" height="100" viewBox="0 0 100 100">
+          <svg 
+            className="circle-1" 
+            width="100" 
+            height="100" 
+            viewBox="0 0 100 100"
+            style={{ top: circle1Position.top, right: circle1Position.right }}
+            onClick={moveCircle1}
+          >
             <circle cx="50" cy="50" r="40" fill="none" stroke="var(--accent)" strokeWidth="2" opacity="0.3" />
           </svg>
-          <svg className="circle-2" width="80" height="80" viewBox="0 0 80 80">
+          <svg 
+            className="circle-2" 
+            width="80" 
+            height="80" 
+            viewBox="0 0 80 80"
+            style={{ bottom: circle2Position.bottom, left: circle2Position.left }}
+            onClick={moveCircle2}
+          >
             <circle cx="40" cy="40" r="30" fill="none" stroke="var(--text-dark)" strokeWidth="2" opacity="0.2" />
           </svg>
         </div>

@@ -6,6 +6,44 @@ function Work() {
   const sectionRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const detailsRef = useRef(null);
+  const mobileHeaderRef = useRef(null);
+  const [isMobileFixed, setIsMobileFixed] = useState(false);
+  const [mobileHeaderHeight, setMobileHeaderHeight] = useState(0);
+  const [navHeight, setNavHeight] = useState(0);
+
+  useEffect(() => {
+    setMobileHeaderHeight(mobileHeaderRef.current ? mobileHeaderRef.current.offsetHeight : 0);
+    const navbar = document.querySelector('.navbar');
+    setNavHeight(navbar ? navbar.offsetHeight : 0);
+
+    const handleResize = () => {
+      setMobileHeaderHeight(mobileHeaderRef.current ? mobileHeaderRef.current.offsetHeight : 0);
+      const n = document.querySelector('.navbar');
+      setNavHeight(n ? n.offsetHeight : 0);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionRef.current) return;
+      const isMobile = window.innerWidth <= 768;
+      if (!isMobile) {
+        if (isMobileFixed) setIsMobileFixed(false);
+        return;
+      }
+
+      const rect = sectionRef.current.getBoundingClientRect();
+      const headerH = mobileHeaderRef.current ? mobileHeaderRef.current.offsetHeight : 0;
+      const shouldFix = rect.top <= navHeight && rect.bottom > headerH + navHeight;
+      if (shouldFix !== isMobileFixed) setIsMobileFixed(shouldFix);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isMobileFixed, navHeight]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -119,6 +157,17 @@ function Work() {
             {projects[activeIndex]?.title}
           </div>
         </div>
+        {/* Mobile overlay heading - sticky within container */}
+        <div 
+          className="project-list-mobile-overlay"
+          ref={mobileHeaderRef}
+          style={isMobileFixed ? { position: 'fixed', top: navHeight || 0, left: 0, right: 0, width: '100%', zIndex: 1000 } : {}}
+        >
+          <div className="active-project-title">
+            {projects[activeIndex]?.title}
+          </div>
+        </div>
+        {isMobileFixed ? <div style={{ height: (mobileHeaderHeight || 0) }} /> : null}
         <div className="project-details" ref={detailsRef}>
           {projects.map((project, index) => (
             <div 
@@ -150,12 +199,6 @@ function Work() {
               </a>
             </div>
           ))}
-        </div>
-      </div>
-      {/* Mobile overlay heading - rendered last to be on top */}
-      <div className="project-list-mobile-overlay">
-        <div className="active-project-title">
-          {projects[activeIndex]?.title}
         </div>
       </div>
     </section>
