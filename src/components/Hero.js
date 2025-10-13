@@ -99,7 +99,6 @@ function Hero() {
         <h2 className="hero-subtitle">
           <TypingText />
         </h2>
-        <p className="hero-location">Web Developer in Visakhapatnam (Vizag), India</p>
        
         {/* <a href="#contact" className="cta-button">
           Let's Work

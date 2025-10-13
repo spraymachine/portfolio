@@ -140,7 +140,7 @@ function Work() {
       title: 'Scratch Wrath',
       description: 'An engaging gaming platform built with modern web technologies, featuring interactive gameplay and smooth animations.',
       link: 'https://manik5621.wixsite.com/scratch-wrath',
-      category: 'Gaming'
+      category: 'Music'
     }
   ];
 
@@ -151,7 +151,7 @@ function Work() {
       className={`work ${isVisible ? 'fade-in' : ''}`}
       aria-label="Portfolio and work showcase"
     >
-      <h2 className="section-title">My Work - Web Development Projects</h2>
+      <h2 className="section-title">My Work</h2>
       <div className="work-container">
         <div className="project-list">
           <div className="active-project-title">
